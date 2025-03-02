@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&family=Lobster&family=Pacifico&display=swap" rel="stylesheet">
+    <title>Secret Apology</title>
+    <style>
+        body {
+            background-color: #ffe6f2;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .button {
+            padding: 12px 24px;
+            font-size: 18px;
+            color: #d63384; /* Baby pink text */
+            background: rgba(255, 182, 193, 0.2); /* Soft baby pink transparent */
+            border: 2px solid rgba(255, 182, 193, 0.4); /* Light pink border */
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 182, 193, 0.3); /* Soft pink glow */
+            backdrop-filter: blur(10px); /* Glass effect */
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .button:hover {
+            background: rgba(255, 182, 193, 0.3); /* Slightly more visible pink */
+            box-shadow: 0 6px 15px rgba(255, 182, 193, 0.5); /* Stronger glow on hover */
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 36px;
+            color: #d63384;
+        }
+        
+        .petal {
+            position: absolute;
+            width: 40px;
+            height: 30px;
+            background-color: red;
+            clip-path: path('M10 30C20 10, 40 10, 50 30C40 50, 20 50, 10 30Z'); /* Petal Shape */
+            opacity: 0.8;
+            animation: fall 5s linear infinite;
+            transform: rotateZ(calc(360deg * var(--rotate)));
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <h1>💖 Hey My Sweetest Husband, Please Click Below 💖</h1>
+    <button class="button" onclick="nextPage()">Click Me</button>
+    <script>
+        function nextPage() {
+            window.location.href = 'sorry.html';
+        }
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            petal.style.setProperty('--rotate', Math.random());
+            document.body.appendChild(petal);
+            setTimeout(() => { petal.remove(); }, 5000);
+        }
+        setInterval(createPetal, 200);
+        document.addEventListener("DOMContentLoaded", function () {
+            if (window.innerWidth < 768) { // Detect mobile screens
+                document.body.innerHTML = "please open this in desktop mode or enable desktop view. Give a quick refresh.."; // Remove all page content
+            }
+        });
+        
+    </script>
+</body>
+</html>

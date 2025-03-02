@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <title>I'm Sorry, My Love</title>
+    <style>
+        body {
+            background-color: #ffe6f2;
+            text-align: center;
+            font-family: 'Lora', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            font-size: 32px;
+            color: #d63384;
+            text-shadow: 2px 2px 5px rgba(255, 105, 180, 0.4);
+        }
+        p {
+            font-size: 18px;
+            color: #b61c58;
+            max-width: 80%;
+        }
+        .heart {
+            font-size: 50px;
+            color: red;
+            animation: heartbeat 1.5s infinite;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        .button {
+            padding: 12px 24px;
+            font-size: 18px;
+            color: #d63384;
+            background: rgba(255, 182, 193, 0.2);
+            border: 2px solid rgba(255, 182, 193, 0.4);
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 182, 193, 0.3);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background: rgba(255, 182, 193, 0.3);
+            box-shadow: 0 6px 15px rgba(255, 182, 193, 0.5);
+        }
+        .buttons {
+            display: flex;
+            gap: 100px;
+            margin-top: 20px;
+        }
+        .no-button {
+            position: static;
+        }
+        
+        .petal {
+            position: absolute;
+            width: 40px;
+            height: 30px;
+            background-color: red;
+            clip-path: path('M10 30C20 10, 40 10, 50 30C40 50, 20 50, 10 30Z');
+            opacity: 0.8;
+            animation: fall 5s linear infinite;
+            transform: rotateZ(calc(360deg * var(--rotate)));
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        #note{
+            color: #b61c58;
+            font-size: 13px;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>💖 My Love, I'm Truly Sorry 💖</h1>
+    <p>I never meant to hurt you. You are my heart, my soul, and my everything. Please forgive me. Be with me as before, not like this as Right now💕</p>
+    <p id="note">(click no if you have dare😏..)</p>
+    <div class="heart">❤️</div>
+    
+    <div class="buttons">
+        <button class="button" onclick="acceptApology()">Yes, I Forgive You 💗</button>
+        <button class="button no-button" id="noButton" onmouseover="escapeButton()">No, I Can't 💔</button>
+    </div>
+
+    <script>
+        function acceptApology() {
+            document.getElementById("noButton").style.display = "none";
+            setInterval(createPetal, 200); // Start falling petals
+        }
+
+        function escapeButton() {
+            let noButton = document.getElementById("noButton");
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 50);
+            noButton.style.position = "absolute";
+            noButton.style.left = x + "px";
+            noButton.style.top = y + "px";
+        }
+
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            petal.style.setProperty('--rotate', Math.random());
+            document.body.appendChild(petal);
+            setTimeout(() => { petal.remove(); }, 5000);
+        }      
+        
+    </script>
+</body>
+</html>
